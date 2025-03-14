@@ -13,6 +13,7 @@ const postsRouters = require('./routers/posts_routers.js')
 app.listen(port, () => {
     console.log(`server listening http://localhost:${port}`);
 })
-
+// middle ware
+app.use(express.json());
 //set path for routes !!!!!!! remember to do it at the set up !!!!!!!!
 app.use('/api/v1/posts', postsRouters);

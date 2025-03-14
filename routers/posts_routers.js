@@ -24,3 +24,5 @@ router.patch('/slug', postsControllers.patch);
 
 //destroy
 router.delete('/slug', postsControllers.destroy);
+
+module.exports = router
