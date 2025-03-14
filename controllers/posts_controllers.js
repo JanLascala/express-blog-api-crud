@@ -35,26 +35,29 @@ function patch(req, res) {
 function destroy(req, res) {
 
     //get mit slug
-    const postsSlug = req.params.slug
+    const postsSlug = req.params.slug;
     // find the post mit id
-    const postsIndex = posts.find(posts => posts.slug === postsSlug);
-    console.log(postsIndex)
+    const postsIndex = posts.findIndex(posts => posts.slug === postsSlug);
+
 
     //if not existing formula
-    if (!postsIndex) {
+    if (postsIndex === -1) {
         return res.status(404).json({
             error: 'post not found',
-            message: 'post not found',
+            message: 'post not found bad slug',
         })
     }
-    res.json(postsSlug)
+
 
     //removal
-    posts.splice(posts.indexOf(postsSlug), 1)
-    console.log(posts)
+    posts.splice(postsIndex, 1)
+    //reposting list with destroyed object
+    res.json(posts)
 
     res.sendStatus(204)
 }
+
+
 module.exports = {
     index,
     show,
