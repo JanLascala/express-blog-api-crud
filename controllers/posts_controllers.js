@@ -1,9 +1,21 @@
 // main require require
-const posts = require('../data/posts.js')
+const posts = require('../data/posts.js');
 
 //index
 function index(req, res) {
-    res.json(posts)
+    //the whole list here
+    //res.json(posts)
+
+    let filteredpost = posts;
+    console.log(req);
+    //apply filter for request in postman ?title =something request 
+
+    if (req.query.title) {
+        console.log('filter the results');
+        filteredpost = posts.filter(posts => posts.title.includes(req.query.title));
+    }
+
+    res.json(filteredpost);
 };
 //show
 
@@ -50,11 +62,11 @@ function destroy(req, res) {
 
 
     //removal
-    posts.splice(postsIndex, 1)
+    posts.splice(postsIndex, 1);
     //reposting list with destroyed object
-    res.json(posts)
+    res.json(posts);
 
-    res.sendStatus(204)
+    res.sendStatus(204);
 }
 
 
