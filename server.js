@@ -1,7 +1,7 @@
 //expors
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3005;
 //posts main data
 const posts = require('./data/posts.js')
 // export routers
