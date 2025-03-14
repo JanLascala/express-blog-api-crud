@@ -11,18 +11,18 @@ const postsControllers = require('../controllers/posts_controllers.js')
 router.get('/', postsControllers.index);
 
 //show
-router.get('/slug', postsControllers.show);
+router.get('/:slug', postsControllers.show);
 
 //store
 router.post('/', postsControllers.store);
 
 //update
-router.put('/slug', postsControllers.update);
+router.put('/:slug', postsControllers.update);
 
 // patch/modify
-router.patch('/slug', postsControllers.patch);
+router.patch('/:slug', postsControllers.patch);
 
 //destroy
-router.delete('/slug', postsControllers.destroy);
+router.delete('/:slug', postsControllers.destroy);
 
-module.exports = router
+module.exports = router;

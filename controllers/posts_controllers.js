@@ -3,20 +3,22 @@ const posts = require('../data/posts.js')
 
 //index
 function index(req, res) {
-    console.log(req);
+    res.json(posts)
 };
 //show
+
 function show(req, res) {
-    function show(req, res) {
-        let post = posts.find(post => post.slug === req.query.slug);
 
-        if (!post) {
-            return res.status(404).json({ message: "Post not found" });
-        }
 
-        res.json(post);
+    let post = posts.find(post => post.slug === req.params.slug);
+
+    if (!post) {
+        return res.status(404).json({ message: "Post not found" });
     }
+
+    res.json(post);
 };
+
 //store
 function store(req, res) {
     res.send('post new posts')
