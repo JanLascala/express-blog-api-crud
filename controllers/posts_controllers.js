@@ -77,40 +77,56 @@ function update(req, res) {
 
 //modify or patch
 function patch(req, res) {
-    res.send('patch this post')
-};
-//destroy!! destroy!!
-function destroy(req, res) {
+    function update(req, res) {
+        //find the post bu slug
+        let post = posts.find(post => post.slug === req.params.slug);
 
-    //get mit slug
-    const postsSlug = req.params.slug;
-    // find the post mit id
-    const postsIndex = posts.findIndex(posts => posts.slug === postsSlug);
+        // error in case wrong slug
+        if (!post) {
+            return res.status(404).json({ message: "Post not found" });
+        }
+        //require che modifications 
+        post.title = req.body.title;
+        post.content = req.body.content;
+        post.image = req.body.image;
+        post.tags = req.body.tags;
+        //check
+        console.log(posts);
+        //res the updated posts
+        res.json(post);
+    };
+    //destroy!! destroy!!
+    function destroy(req, res) {
+
+        //get mit slug
+        const postsSlug = req.params.slug;
+        // find the post mit id
+        const postsIndex = posts.findIndex(posts => posts.slug === postsSlug);
 
 
-    //if not existing formula
-    if (postsIndex === -1) {
-        return res.status(404).json({
-            error: 'post not found',
-            message: 'post not found bad slug',
-        })
+        //if not existing formula
+        if (postsIndex === -1) {
+            return res.status(404).json({
+                error: 'post not found',
+                message: 'post not found bad slug',
+            })
+        }
+
+
+        //removal
+        posts.splice(postsIndex, 1);
+        //reposting list with destroyed object
+        res.json(posts);
+
+        res.sendStatus(204);
     }
 
 
-    //removal
-    posts.splice(postsIndex, 1);
-    //reposting list with destroyed object
-    res.json(posts);
-
-    res.sendStatus(204);
-}
-
-
-module.exports = {
-    index,
-    show,
-    store,
-    update,
-    patch,
-    destroy,
-}
+    module.exports = {
+        index,
+        show,
+        store,
+        update,
+        patch,
+        destroy,
+    }
