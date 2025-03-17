@@ -34,11 +34,9 @@ function show(req, res) {
 //store
 function store(req, res) {
 
-    const newSlug = posts[posts.length - 1].id + 1;
 
     const newPost = {
         title: req.body.title,
-        slug: newSlug,
         content: req.body.content,
         image: req.body.image,
         tags: req.body.tags,
