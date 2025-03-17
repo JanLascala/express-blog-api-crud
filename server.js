@@ -11,7 +11,7 @@ const posts = require('./data/posts.js')
 const postsRouters = require('./routers/posts_routers.js')
 
 //add static image? here later??
-
+app.use(express.static('public'));
 //server listen
 app.listen(port, () => {
     console.log(`server listening http://localhost:${port}`);
