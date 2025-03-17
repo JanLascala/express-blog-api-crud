@@ -33,7 +33,24 @@ function show(req, res) {
 
 //store
 function store(req, res) {
-    res.send('post new posts')
+
+    const newSlug = posts[posts.length - 1].id + 1;
+
+    const newPost = {
+        slug: newSlug,
+        name: req.body.name,
+        image: req.body.image,
+
+    }
+    menu.push(newPost);
+
+    // control
+    console.log(posts);
+
+    res.status(201);
+    res.json(newPost);
+
+
 };
 //update
 function update(req, res) {
