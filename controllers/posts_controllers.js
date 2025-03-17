@@ -34,15 +34,17 @@ function show(req, res) {
 //store
 function store(req, res) {
 
+    const newSlug = req.body.title.toLowerCase().replace(/\s+/g, '-');
 
     const newPost = {
         title: req.body.title,
+        slug: newSlug,
         content: req.body.content,
         image: req.body.image,
         tags: req.body.tags,
 
     }
-    menu.push(newPost);
+    posts.push(newPost);
 
     // control
     console.log(posts);
