@@ -56,8 +56,25 @@ function store(req, res) {
 };
 //update
 function update(req, res) {
-    res.send('update posts')
+    //find the post bu slug
+    let post = posts.find(post => post.slug === req.params.slug);
+
+    // error in case wrong slug
+    if (!post) {
+        return res.status(404).json({ message: "Post not found" });
+    }
+    //require che modifications 
+    post.title = req.body.title;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags = req.body.tags;
+    //check
+    console.log(posts);
+    //res the updated posts
+    res.json(post);
 };
+
+
 //modify or patch
 function patch(req, res) {
     res.send('patch this post')
