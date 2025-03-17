@@ -37,9 +37,11 @@ function store(req, res) {
     const newSlug = posts[posts.length - 1].id + 1;
 
     const newPost = {
+        title: req.body.title,
         slug: newSlug,
-        name: req.body.name,
+        content: req.body.content,
         image: req.body.image,
+        tags: req.body.tags,
 
     }
     menu.push(newPost);
