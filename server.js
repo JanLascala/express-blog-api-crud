@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const notFound = require('./Middleware/notFound.js');
+const errorHandler = require('./Middleware/errorHandler.js');
 
 
 //posts main data
@@ -16,8 +18,17 @@ app.use(express.static('public'));
 app.listen(port, () => {
     console.log(`server listening http://localhost:${port}`);
 })
-// middle ware
-app.use(express.json());
-
 //set path for routes !!!!!!! remember to do it at the set up !!!!!!!!
 app.use('/api/v1/posts', postsRouters);
+
+
+// middle ware
+app.use(express.json());
+//middleware 500
+app.use(errorHandler);
+
+//middle 404error
+app.use(notFound);
+
+
+
